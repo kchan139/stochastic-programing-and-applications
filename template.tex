@@ -1,0 +1,229 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
+\usepackage{vntex}
+\usepackage{amsmath}
+\usepackage{lastpage}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{graphicx}							% Standard graphics package
+\usepackage{array}
+\usepackage{tabularx, caption}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usetikzlibrary{arrows,snakes,backgrounds}
+\usepackage{hyperref}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
+%\usepackage{pstcol} 								% PSTricks with the standard color package
+
+\newtheorem{theorem}{{\bf Theorem}}
+\newtheorem{property}{{\bf Property}}
+\newtheorem{proposition}{{\bf Proposition}}
+\newtheorem{corollary}[proposition]{{\bf Corollary}}
+\newtheorem{lemma}[proposition]{{\bf Lemma}}
+
+\AtBeginDocument{\renewcommand*\contentsname{Contents}}
+\AtBeginDocument{\renewcommand*\refname{References}}
+%\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+    %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
+   \end{picture}&
+	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily University of Technology, Ho Chi Minh City}\\
+		\textbf{\bf \ttfamily Faculty of Computer Science and Engineering}
+	\end{tabular} 	
+ \end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+		\tiny \bf \\
+		\tiny \bf 
+	\end{tabular}  }
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Assignment for Discrete Structures for Computing - Academic year 2019 - 2020}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+
+%%%
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\makeatletter
+\newcounter {subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection .\@alph\c@subsubsubsection}
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{3}{10.0em}{4.1em}}
+\newcommand*{\subsubsubsectionmark}[1]{}
+\makeatother
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY \\
+UNIVERSITY OF TECHNOLOGY \\
+FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+\end{center}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3cm]{hcmut.png}
+\end{center}
+\end{figure}
+
+\vspace{1cm}
+
+
+\begin{center}
+\begin{tabular}{c}
+\multicolumn{1}{l}{\textbf{{\Large MATHEMATICAL MODELING (CO2011)}}}\\
+~~\\
+\hline
+\\
+\multicolumn{1}{l}{\textbf{{Assignment (Semester: 231, Duration: 06 weeks)}}}\\
+\\
+\textbf{{\Huge "Stochastic Programming}}\\
+\\
+\textbf{{\Huge and Applications”}}\\[10pt]
+
+\multicolumn{1}{l}{\textbf{{(Version 0.1, in Preparation)}}}\\
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{2cm}
+
+\begin{table}[h]
+	\begin{tabular}{rrl}
+		\hspace{5 cm} Advisor: & Nguyễn Tiến Thịnh, CSE-HCMUT\\[6pt]
+		Students: & 
+		\begin{tabular}{@{}ll@{}}
+			Trần Đình Đăng Khoa & - 2211649 \\
+			Trần Đặng Hiển Long & - 2252449 \\
+			Nguyễn Hồ Phi Ưng & - 2252897 \\
+			Nguyễn Hồ Đức An & - 2252009 \\
+			Vũ Minh Quân & - 2212828 \\
+		\end{tabular}
+	\end{tabular}
+\end{table}
+	
+
+% \begin{table}[h]
+% 	\begin{tabular}{rrl}
+% 		\hspace{5 cm} & Advisor: & Nguyễn Tiến Thịnh, CSE-HCMUT\\[6pt]
+% 		& Students: & Trần Đình Đăng Khoa - Student 1 ID numbers. \\
+% 		& & Trần Đặng Hiển Long - Student 2 ID numbers. \\
+% 		& & Nguyễn Hồ Phi Ưng - Student 3 ID numbers. \\
+% 		& & Nguyễn Hồ Đức An - 19181716. \\
+% 		& & Vũ Minh Quân - 19181716. \\
+% 	\end{tabular}
+% \end{table}
+
+\vspace*{1cm}
+	
+
+\begin{center}
+{\footnotesize HO CHI MINH CITY, OCTOBER 2023}
+\end{center}
+\end{titlepage}
+
+
+%\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Member list \& Workload}
+
+\begin{center}
+\begin{tabular}{|c|c|c|l|c|}
+\hline
+\textbf{No.} & \textbf{Fullname} & \textbf{Student ID} & \textbf{Problems} & \textbf{Percentage of work}\\
+\hline 
+%%%%%Student 1%%%%%%%%%%
+\multirow{3}{*}{1} & \multirow{3}{*}{Nguyễn Văn A} & \multirow{3}{*}{19181716} & - Relation \& Counting: 1, 2, 3& \multirow{3}{*}{30\%}\\
+ & &  & Bonus: 1, 2, 3. &\\
+ & &  & - Probability: 1, 2, 3. &\\
+\hline 
+%%%%%Student 2%%%%%%%%%%%
+\multirow{3}{*}{2} & \multirow{3}{*}{Nguyễn Văn B} & \multirow{3}{*}{19181717} & - Relation \& Counting: 4, 5, 6& \multirow{3}{*}{20\%}\\
+ & &  & Bonus: 4, 5, 6. &\\
+ & &  & - Graph: 1, 2, 3, Bonus: 1, 2, 3. &\\
+\hline
+%%%%%Student 3%%%%%%%%%%%
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relation \& Counting}
+	\subsection{Problem 1}
+	...
+	
+	\subsection{Problem 2}
+	...
+
+	\subsection{Bonus exercises}
+	...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probabilty}
+	\subsection{Problem 1}
+	...
+	
+	\subsection{Problem 2}
+	...
+
+	\subsection{Bonus exercises}
+	...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Graph}
+	\subsection{Problem 1}
+	...
+	
+	\subsection{Problem 2}
+	...
+
+	\subsection{Bonus exercises}
+	...
+
+\begin{thebibliography}{80}
+
+
+\bibitem{bib1}
+...
+
+
+\bibitem{bib2}
+...
+
+
+\end{thebibliography}
+\end{document}
+
