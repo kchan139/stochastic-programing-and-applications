@@ -11,14 +11,14 @@ def main():
 
     b = randint (5, 10, m) # preorder cost for each part
 
-    A = np.array (randint (1, 10, m),
+    A = np.array([randint (1, 10, m),
                   randint (1, 10, m),
                   randint (1, 10, m),
                   randint (1, 10, m),
                   randint (1, 10, m),
                   randint (1, 10, m),
                   randint (1, 10, m),
-                  randint (1, 10, m)) # bill of materials matrix [m x n]
+                  randint (1, 10, m)]) # bill of materials matrix [m x n]
     
     s = randint (1, 10, m)       # salvage values
     l = randint (100, 200, n)    # additional costs
@@ -26,7 +26,8 @@ def main():
 
     c = l - q # cost coefficients
 
-    print (D)
+    print (D, end = "\n\n")
+    print (A)
 
 def binomial (n, p, size):
     """
