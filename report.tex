@@ -38,7 +38,7 @@
 \fancyhead[L]{
  \begin{tabular}{rl}
     \begin{picture}(25,15)(0,0)
-    \put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{graphics/hcmut.png}}
     %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
    \end{picture}&
 	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
@@ -88,7 +88,7 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=3cm]{hcmut.png}
+\includegraphics[width=3cm]{graphics/hcmut.png}
 \end{center}
 \end{figure}
 
@@ -117,28 +117,14 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 
 \begin{table}[h]
 	\begin{tabular}{rrl}
-		\hspace{5 cm} Advisor: & Nguyễn Tiến Thịnh, CSE-HCMUT\\[6pt]
-		Students: & 
-		\begin{tabular}{@{}ll@{}}
-			Trần Đình Đăng Khoa &   2211649 \\
-			Trần Đặng Hiển Long &   2252449 \\
-			Nguyễn Hồ Phi Ưng &   2252897 \\
-			Nguyễn Hồ Đức An &   2252009 \\
-			Vũ Minh Quân &   2212828 \\
-		\end{tabular}
+		\hspace{5 cm} & Advisor: & Nguyễn Tiến Thịnh, CSE-HCMUT\\[6pt]
+		& Students: & Trần Đình Đăng Khoa \hspace*{0.05cm} - 2211649. \\
+		& 			& Trần Đặng Hiển Long \hspace*{0.15cm} - 2252449. \\
+		& 			& Nguyễn Hồ Phi Ưng	  \hspace*{0.41cm} - 2252897. \\
+		& 			& Nguyễn Hồ Đức An 	  \hspace*{0.5cm} - 2252009. \\
+		& 			& Vũ Minh Quân		  \hspace*{1.2cm} - 2212828. \\
 	\end{tabular}
 \end{table}
-
-% \begin{table}[h]
-% 	\begin{tabular}{rrl}
-% 		\hspace{5 cm} & Advisor: & Nguyễn Tiến Thịnh, CSE-HCMUT\\[6pt]
-% 		& Students: & Trần Đình Đăng Khoa - Student 1 ID numbers. \\
-% 		& & Trần Đặng Hiển Long - Student 2 ID numbers. \\
-% 		& & Nguyễn Hồ Phi Ưng - Student 3 ID numbers. \\
-% 		& & Nguyễn Hồ Đức An - 19181716. \\
-% 		& & Vũ Minh Quân - 19181716. \\
-% 	\end{tabular}
-% \end{table}
 
 \vspace*{1cm}
 
@@ -151,75 +137,15 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 
 \newpage
 \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{sections/abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{sections/intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{sections/background}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Abstract}
-\qquad When you have a problem that requires you to find the optimal solution to a goal, while taking into account the limitations of your resources and the trade-offs of your choices, you may have a \textcolor{magenta}{\textbf{linear programming problem}}. This type of problem can be expressed using linear functions of some variables for both the goal and the limitations. Linear programming problems are very useful for modeling many practical situations in different fields, such as:
-
-\begin{itemize}
-	\item A farmer who wants to maximize the profit from planting crops, while considering the available land, water, seeds, and fertilizer.
-	\item A manufacturer who wants to minimize the cost of producing goods, while meeting the demand and quality standards of the customers.
-	\item A transportation company who wants to optimize the routes and schedules of its vehicles, while reducing the fuel consumption and travel time.\\
-\end{itemize}
-
-\qquad In this report, we will introduce the basic concepts of ...
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction to Stochastic Programming and Optimization}
-	\subsection{What is Stochastic Programming?}
-	An optimization problem is said to be a \textbf{stochastic program} if it satisfies the following
-properties:
-
-\begin{enumerate}
-	\item There is a unique objective function.
-	\item Whenever a decision variable appears in either the objective function or one of the constraint functions, it must appear only as a power term with an exponent of \textbf{1}, possibly multiplied by a constant.
-	\item No term in the objective function or in any of the constraints can contain products of the
-	decision variables.
-	\item The coefficients of the decision variables in the objective function and each constraint
-	are \textit{\textbf{probabilistic}}  in nature.
-	\item The decision variables are permitted to assume fractional as well as integer values.
-
-\end{enumerate}
-
-These properties ensure, among other things, that the effect of any decision variable is proportional to its value.
-	
-	\subsection{Bla Bla BLA}
-	...
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Background - Basic concepts}
-	\subsection{The Simplex Method}
-
-\qquad The \textbf{Simplex Method}, developed by George Dantzig, incorporates both \textit{optimality} and \textit{feasibility} tests to find the optimal solution(s) to a linear program (if one exists). 
-
-Geometrically, the Simplex Method
-proceeds from an initial extreme point to an adjacent extreme point until no adjacent extreme
-point is more optimal. \\
-
-\qquad To implement the Simplex Method we first separate the \textit{decision} and \textit{slack} variables into two non-overlapping sets that we call the \textbf{independent} and \textbf{dependent} sets. For the particular linear programs we consider, the original independent set will consist of the decision variables, and the slack variables will belong to the dependent set. \\[6pt]
-
-\textbf{The Algorithm:}
-\begin{enumerate}
-	\item Tableau Format: Place the linear program in Tableau Format, as explained later.
-	\item Initial Extreme Point: The Simplex Method begins with a known extreme point, usually
-	the origin (0, 0).
-	\item Optimality Test: Determine whether an adjacent intersection point improves the value of the objective function. If not, the current extreme point is optimal. If an improvement is possible, the optimality test determines which variable currently in the independent set (having value zero) should \textit{enter} the dependent set and become nonzero.
-	\item Feasibility Test: To find a new intersection point, one of the variables in the dependent set must \textit{exit} to allow the entering variable from Step 3 to become dependent. The feasibility test determines which current dependent variable to choose for exiting, ensuring feasibility.
-	\item Pivot: Form a new, equivalent system of equations by eliminating the new dependent variable from the equations do not contain the variable that exited in Step 4. Then set
-	the new independent variables to zero in the new system to find the values of the new dependent variables, thereby determining an intersection point.
-	\item Repeat Steps 3 - 5 until the extreme point is optimal.
-	
-\end{enumerate}
-
-	\subsection{Place holder}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \section{Place holder}
 	\subsection{Place holder 1}
 	...
@@ -228,46 +154,11 @@ point is more optimal. \\
 	...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Member list \& Workload}
-
-\begin{center}
-\begin{tabular}{|c|c|c|l|c|}
-\hline
-\textbf{No.} & \textbf{Fullname} & \textbf{Student ID} & \textbf{Problems} & \textbf{Percentage of work}\\
-\hline 
-%%%%%Student 1%%%%%%%%%%
-\multirow{3}{*}{1} & \multirow{3}{*}{Trần Đình Đăng Khoa} & \multirow{3}{*}{2211649} & - Relation \& Counting: 1, 2, 3& \multirow{3}{*}{30\%}\\
- & &  & Bonus: 1, 2, 3. &\\
- & &  & - Probability: 1, 2, 3. &\\
-\hline 
-%%%%%Student 2%%%%%%%%%%%
-\multirow{3}{*}{2} & \multirow{3}{*}{Trần Đặng Hiển Long} & \multirow{3}{*}{2252449} & - Relation \& Counting: 4, 5, 6& \multirow{3}{*}{20\%}\\
- & &  & Bonus: 4, 5, 6. &\\
- & &  & - Graph: 1, 2, 3, Bonus: 1, 2, 3. &\\
-\hline
-%%%%%Student 3%%%%%%%%%%%
-\multirow{3}{*}{3} & \multirow{3}{*}{Nguyễn Hồ Phi Ưng} & \multirow{3}{*}{2252897} & - Relation \& Counting: 7, 8, 9& \multirow{3}{*}{20\%}\\
- & &  & Bonus: 7, 8, 9. &\\
- & &  & - Probability: 4, 5, 6. &\\
-%%%%%Student 4%%%%%%%%%%%
-\hline
-\multirow{3}{*}{4} & \multirow{3}{*}{Nguyễn Hồ Đức An} & \multirow{3}{*}{2252009} & - Relation \& Counting: 10, 11, 12& \multirow{3}{*}{20\%}\\
- & &  & Bonus: 10, 11, 12. &\\
- & &  & - Graph: 4, 5, 6, Bonus: 4, 5, 6. &\\
-%%%%%Student 5%%%%%%%%%%%
-\hline
-\multirow{3}{*}{5} & \multirow{3}{*}{Vũ Minh Quân} & \multirow{3}{*}{2212828} & - Relation \& Counting: 13, 14, 15& \multirow{3}{*}{10\%}\\
- & &  & Bonus: 13, 14, 15. &\\
- & &  & - Probability: 7, 8, 9. &\\
-\hline
-\end{tabular}
-\end{center}
-
+\include{sections/members}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \bibliographystyle{plain}
 \bibliography{citations/books.bib}
 \nocite{*}
 
-
 \end{document}
-
