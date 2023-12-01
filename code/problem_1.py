@@ -7,7 +7,7 @@ def main():
     m   = 5           # number of parts to be ordered
 
     D = np.array([binomial (10, 0.5, n),
-                  binomial (10, 0.5, n)]) # demand for each product in each scenario
+                  binomial (10, 0.5, n)]) # demand for each product in each scenario matrix [n x S]
 
     b = randint (5, 10, m) # preorder cost for each part
 
@@ -18,7 +18,13 @@ def main():
                   randint (1, 10, m),
                   randint (1, 10, m),
                   randint (1, 10, m),
-                  randint (1, 10, m)) # 
+                  randint (1, 10, m)) # bill of materials matrix [m x n]
+    
+    s = randint (1, 10, m)       # salvage values
+    l = randint (100, 200, n)    # additional costs
+    q = randint (1000, 1400, n)  # unit selling prices
+
+    c = l - q # cost coefficients
 
     print (D)
 
