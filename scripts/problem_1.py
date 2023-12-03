@@ -1,25 +1,24 @@
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum
 import numpy as np
-import numpy as np
 
 def main():
     n   = 2           # number of products
-    S   = 2           # number of scenarios
-    p_s = [0.5, 0.5]  # probability of each scenario / density
     m   = 2           # number of parts to be ordered
+    S   = 2           # number of scenarios
+    p_s = [0.5, 0.5]  # probability / density of each scenario
 
     # Demand for each product in each scenario ( [n x S] matrix )
     D = np.zeros ((n, S))
     for i in range (n):
         D[i] = binomial (10, 0.5, S)
 
-    # Preorder cost for each part ( [1 x m] vector )
-    b = randint (5, 10, m)
-
     # Bill of materials ( [m x n] matrix )
     A = np.zeros ((m, n))
     for i in range (m):
         A[i] = randint (1, 10, n)
+
+    # Preorder cost for each part ( [1 x m] vector )
+    b = randint (5, 10, m)
 
     # Salvage values ( [1 x m] vector )
     s = randint (1, 10, m)
@@ -31,8 +30,8 @@ def main():
     q = randint (1000, 1400, n) 
 
     print("D = \n", D)
+    print("A = \n", A, '\n')
     print("b = ", b)
-    print("A = \n", A)
     print("s = ", s)
     print("l = ", l)
     print("q = ", q)
