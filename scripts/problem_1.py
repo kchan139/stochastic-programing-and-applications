@@ -16,7 +16,7 @@ def main():
     # Preorder cost for each part ( [1 x m] vector )
     b = randint (5, 10, m)
 
-    # Bill of materials matrix [m x n]
+    # Bill of materials ( [m x n] matrix )
     A = np.zeros ((m, n))
     for i in range (m):
         A[i] = randint (1, 10, n)
@@ -54,7 +54,8 @@ def main():
     # l = np.array([221, 190, 175, 144, 135, 242, 249, 169])
     # q = np.array([1344, 642, 1123, 1282, 1359, 1457, 619, 1444])
 
-    c = l - q # cost coefficients
+    # Cost coefficients ( [1 x n] vector )
+    c = l - q
 
     D = D.transpose()
     A = A.transpose()
@@ -84,13 +85,17 @@ def main():
         for i in range(m):
             prob1 += y1[(i, k)] == x1[i] - lpSum( A[i][j] * z1[(j, k)] for j in range(n) )
 
-    # objective function
+    # Objective function
     prob1 += lpSum ([b[i] * x1[i] for i in range(m)]) + lpSum([(lpSum([c[j] * z1[(j, k)] for j in range(n)]) - lpSum([s[i] * y1[(i, k)] for i in range(m)]) * p_s[k]) for k in range(S)])
 
     prob1.solve()
 
     value_x1 = [x1[i].varValue for i in range(m)]
     print("x1 = ", value_x1)
+
+
+
+
 
 
 def binomial (n, p, size):
