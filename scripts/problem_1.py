@@ -30,9 +30,9 @@ def main():
     # Unit selling prices ( [1 x n] vector )
     q = randint (1000, 1400, n) 
 
-    print("D = ", D)
+    print("D = \n", D)
     print("b = ", b)
-    print("A = ", A)
+    print("A = \n", A)
     print("s = ", s)
     print("l = ", l)
     print("q = ", q)
