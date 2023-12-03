@@ -1,29 +1,41 @@
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum
 import numpy as np
+import numpy as np
 
 def main():
-    n   = 8           # number of products
+    n   = 2           # number of products
     S   = 2           # number of scenarios
     p_s = [0.5, 0.5]  # probability of each scenario / density
-    m   = 5           # number of parts to be ordered
+    m   = 2           # number of parts to be ordered
 
-    # D = np.array([binomial (10, 0.5, n),
-    #               binomial (10, 0.5, n)]) # demand for each product in each scenario matrix [n x S]
+    # Demand for each product in each scenario ( [n x S] matrix )
+    D = np.zeros ((n, S))
+    for i in range (n):
+        D[i] = binomial (10, 0.5, S)
 
-    # b = randint (5, 10, m) # preorder cost for each part
+    # Preorder cost for each part ( [1 x m] vector )
+    b = randint (5, 10, m)
 
-    # A = np.array([randint (1, 10, m),
-    #               randint (1, 10, m),
-    #               randint (1, 10, m),
-    #               randint (1, 10, m),
-    #               randint (1, 10, m),
-    #               randint (1, 10, m),
-    #               randint (1, 10, m),
-    #               randint (1, 10, m)]) # bill of materials matrix [m x n]
-    
-    # s = randint (1, 10, m)       # salvage values
-    # l = randint (100, 200, n)    # additional costs
-    # q = randint (1000, 1400, n)  # unit selling prices
+    # Bill of materials matrix [m x n]
+    A = np.zeros ((m, n))
+    for i in range (m):
+        A[i] = randint (1, 10, n)
+
+    # Salvage values ( [1 x m] vector )
+    s = randint (1, 10, m)
+
+    # Additional costs ( [1 x n] vector )
+    l = randint (100, 200, n)
+
+    # Unit selling prices ( [1 x n] vector )
+    q = randint (1000, 1400, n) 
+
+    print("D = ", D)
+    print("b = ", b)
+    print("A = ", A)
+    print("s = ", s)
+    print("l = ", l)
+    print("q = ", q)
 
     # D = np.array([[76, 99, 59, 88, 74, 87, 61, 66],
     #               [70, 72, 83, 82, 62, 92, 53, 89]])
@@ -47,7 +59,7 @@ def main():
     D = D.transpose()
     A = A.transpose()
 
-    prob1 = LpProblem(name="2_Stage_Problem", sense = LpMinimize)
+    prob1 = LpProblem(name = "2_Stage_Problem", sense = LpMinimize)
     x1 = LpVariable.dicts("x", range(m), cat = 'Integer')
     y1 = LpVariable.dicts("y", ( (i, j) for i in range(m) for j in range(S) ), cat = "Integer")
     z1 = LpVariable.dicts("z", ( (i, j) for i in range(n) for j in range(S) ), cat = "Integer")
