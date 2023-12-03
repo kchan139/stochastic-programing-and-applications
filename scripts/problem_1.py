@@ -65,8 +65,6 @@ def main():
     for i in range(n):
         for j in range(S):
             prob1 += z1[(i, j)] >= 0
-            
-        for j in range(S):
             prob1 += z1[(i, j)] <= D[i][j]
 
     # y = x - A^T * z
