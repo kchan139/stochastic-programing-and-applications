@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article}
 \usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
-\usepackage{vntex}
+\usepackage[utf8]{vietnam}
+\usepackage[vietnamese,english]{babel}
 \usepackage{amsmath}
 \usepackage{lastpage}
 \usepackage[lined,boxed,commentsnumbered]{algorithm2e}
@@ -9,6 +10,7 @@
 \parindent 0pt
 \usepackage{graphicx}							% Standard graphics package
 \usepackage{array}
+\usepackage{float}
 \usepackage{tabularx, caption}
 \usepackage{multirow}
 \usepackage{multicol}
@@ -148,11 +150,21 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 \include{sections/question1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Place holder}
-	\subsection{Place holder 1}
-	...
+\section{Solutions}
+	\subsection{Problem I. [Industry - Manufacturing]}
+	\qquad Consider an industrial firm \textbf{F} where a manufacturer produces n products.
+There are different parts (sub-assemblies) to be ordered from in total \textcolor{cyan}{\textit{m}} 3rd-party suppliers (the
+sites). This picture shows a transportation plan of the industrial firm \textbf{F} with \textcolor{cyan}{\textit{m = 3}} from suppliers and \textcolor{cyan}{\textit{n = 4}} production locations (products, or warehouses).
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/prob1_example.png}
+		\selectlanguage{english}
+		\caption{Transportation plan of the industrial firm \textbf{F}}
+		\label{fig:problem1}
+	\end{figure}
 	
-	\subsection{Place holder 2}
+	\subsection{Problem II}
 	...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
