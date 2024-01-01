@@ -1,0 +1,70 @@
+\newpage
+\section{Solution to PROBLEM 1}
+	\subsection{Summary of the Problem}
+
+	\qquad In this problem, the objective is to minimize the production of an industrial firm F. To be specific, the firm needs to produce $n$ products. Each product requires different number of parts which have to be ordered from $m$ 3rd-party suppliers and each part has a cost of $b$. Before the demand for the products are known, the number of parts to be ordered has to be decided. After that, the production stage begins and the demand is revealed. With each product, there is an associating selling price $q$. If the parts are overbought (exceed the necessary number for production), they have to be reselled with a price of $s$ to minimize the cost. Moreover, when a demand of a product is not fulfilled, it costs additionally $l$ per unit to satisfy that demand.
+
+	\qquad This is a 2-stage stochastic linear programming (2-SLP) problem where the demand of the products acts as the uncertainty. The goal of the two stages is to minimize the cost of preordering parts and the cost of production, respectively. The detailed formulation process and solution will be provided below.
+	
+	\subsection{Model formulation}
+		\subsubsection{Notations}
+		
+		\qquad for ease of reading, the tables below summarize the notation of parameters and decision variables used in 
+the formulation of this report.
+
+		% Parameter table
+		\begin{center}
+		\begin{tabular}{|c|l|}
+		\hline
+		\textbf{Symbol} & \textbf{Definition}\\
+		\hline 
+		\multirow{1}{*}{$n$} & \multirow{1}{*}{Number of products}\\
+		\hline
+		\multirow{1}{*}{$m$} & \multirow{1}{*}{Number of parts}\\
+		\hline
+		\multirow{1}{*}{$i, j$} & \multirow{1}{*}{Index of products and parts, respectively}\\
+		\hline
+		\multirow{1}{*}{$b$} & \multirow{1}{*}{The set of preorder cost of parts}\\
+		\hline
+		\multirow{1}{*}{$q$} & \multirow{1}{*}{Selling price per unit of product $i$}\\
+		\hline
+		\multirow{1}{*}{$l$} & \multirow{1}{*}{The set of additional cost to satisfy a demand per unit}\\
+		\hline
+		\multirow{1}{*}{$A$} & \multirow{1}{*}{The matrix representing parts needed for each product}\\
+		\hline
+		\multirow{1}{*}{$a_{ij}$} & \multirow{1}{*}{Number of part $j$ needed for product $i$}\\
+		\hline
+		\multirow{1}{*}{$s$} & \multirow{1}{*}{The set of salvage part selling price}\\
+		\hline
+		\multirow{1}{*}{$D$} & \multirow{1}{*}{The set of the demand of the product}\\
+		\hline
+		\end{tabular}
+		\end{center}
+
+		% Decision variable table
+		\begin{center}
+		\begin{tabular}{|c|l|}
+		\hline
+		\textbf{Symbol} & \textbf{Definition}\\
+		\hline 
+		\multirow{1}{*}{$x$} & \multirow{1}{*}{The set of parts $j$ to be ordered}\\
+		\hline
+		\multirow{1}{*}{$z$} & \multirow{1}{*}{The set of manufactured product $i$}\\
+		\hline
+		\multirow{1}{*}{$y$} & \multirow{1}{*}{The set of salvage part $j$}\\
+		\hline
+		\end{tabular}
+		\end{center}
+
+		\subsubsection{First stage}
+		\qquad As mentioned above, the first stage is about making sure the number of parts preordered will be enough to meet the unknown demand in the future and not overbought or underbought as that will damage the profit of the firm. It can be formulated as:
+
+		\begin{align*}
+			\text{min } & g(x,y,z) = b^Tx + Q(x) = b^Tx + E[Z(z,y)] \\
+			\text{s.t. } & x,y,z \geq 0
+		\end{align*}
+
+		\subsubsection{Second stage}
+		
+
+		
