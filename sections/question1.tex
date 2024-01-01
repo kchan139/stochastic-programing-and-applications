@@ -38,6 +38,10 @@ the formulation of this report.
 		\hline
 		\multirow{1}{*}{$D$} & \multirow{1}{*}{The set of the demand of the product}\\
 		\hline
+		\multirow{1}{*}{$S$} & \multirow{1}{*}{Number of scenarios}\\
+		\hline
+		\multirow{1}{*}{$p_s$} & \multirow{1}{*}{Probability of scenario $s$}\\
+		\hline
 		\end{tabular}
 		\end{center}
 
@@ -57,14 +61,39 @@ the formulation of this report.
 		\end{center}
 
 		\subsubsection{First stage}
-		\qquad As mentioned above, the first stage is about making sure the number of parts preordered will be enough to meet the unknown demand in the future and not overbought or underbought as that will damage the profit of the firm. It can be formulated as:
+		\qquad As mentioned above, the first stage is about making sure the number of parts preordered will be enough to meet the unknown demand in the future and not overbought or underbought as that will damage the profit of the firm. The decision variable in this stage is $x$ and also a \textit{here-and-now} decision. It can be formulated as:
 
 		\begin{align*}
-			\text{min } & g(x,y,z) = b^Tx + Q(x) = b^Tx + E[Z(z,y)] \\
+			\text{min } & g(x,y,z) = b^Tx + Q(x)\\
 			\text{s.t. } & x,y,z \geq 0
 		\end{align*}
 
+		where $b^Tx$ is the cost of purchasing vital parts for manufacturing and $Q(x)$ is the expected value of the optimal production cost (which is the solution to the second stage problem which will be presented right below).
+
 		\subsubsection{Second stage}
+
+		\qquad In this stage, the demand $d=(d_1,d_2,...,d_n)$ for the products are realized, thus, the best production plan can be achieved by solving the stochastic linear program with decision variable $x$ and $y$:
+
+		\begin{align*}
+			min_{x,y} & Z=\sum^n_{i=1} (l_i-q_i)z_i - \sum^m_{j=1}s_jy_j \\
+			\text{s.t. } & y_j=x_j- \sum_{i=1}^n a_{ij}z_i, \quad j=1,...,m \\
+			& 0 \leq z_i \leq d_i, \quad i=1,...,n \\
+			& y_j \geq 0, \quad j=1,...,m
+		\end{align*}
 		
+		\subsubsection{Final model}
+		\subsubsection{Solution}
+
+		\qquad In the description of the assignment, specific value of the parameters are given as follows:
+
+		\begin{itemize}
+			\item n = 8
+			\item m = 5
+			\item S = 2
+			\item $p_s$ = 1/2
+			\item Values of b, l, q, s and A are randomized 
+			\item Random demand vector $D$ and its density $p_i$ follows the binomial distribution \textbf{Bin(10,1/2)}
+		\end{itemize}
+
 
 		
