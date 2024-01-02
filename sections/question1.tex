@@ -2,14 +2,14 @@
 \section{PROBLEM I. [Industry - Manufacutring]}
 	\subsection{Summary of the Problem}
 
-	\qquad In this problem, the objective is to minimize the production of an industrial firm F. To be specific, the firm needs to produce $n$ products. Each product requires different number of parts which have to be ordered from $m$ 3rd-party suppliers and each part has a cost of $b$. Before the demand for the products are known, the number of parts to be ordered has to be decided. After that, the production stage begins and the demand is revealed. With each product, there is an associating selling price $q$. If the parts are overbought (exceed the necessary number for production), they have to be reselled with a price of $s$ to minimize the cost. Moreover, when a demand of a product is not fulfilled, it costs additionally $l$ per unit to satisfy that demand.
+	\qquad This problem revolves around minimizing the production output of an industrial firm F. Specifically, the firm is tasked with manufacturing \textcolor{cyan}{\textit{n}} distinct products. Each product necessitates varying quantities of components, sourced from \textcolor{cyan}{\textit{m}} external suppliers, each carrying a unit cost of \textcolor{cyan}{\textit{b}}. Before the product demands are determined, the firm must make decisions regarding the quantity of components to procure. Following this procurement phase, the production commences and the product demands are disclosed. Corresponding to each product, there exists a selling price, denoted as \textcolor{cyan}{\textit{q}}. In the event of an excess in component procurement beyond the production requirements, salvage components must be resold at a price of \textcolor{cyan}{\textit{s}} to mitigate costs. Additionally, any unmet product demands incur an extra cost of \textcolor{cyan}{\textit{l}} per unit to fulfill.
 
-	\qquad This is a 2-stage stochastic linear programming (2-SLP) problem where the demand of the products acts as the uncertainty. The goal of the two stages is to minimize the cost of preordering parts and the cost of production, respectively. However, as specified in the assignment description, the problem requires recourse action so it is a 2-stage stochastic linear programming problem with recourse (2-SLPWR). The detailed formulation process and solution will be provided below.
+	\qquad This problem constitutes a 2-stage stochastic linear programming (2-SLP) challenge, where the product demands introduce uncertainty. The primary aim across the two stages involves minimizing the expenses linked to both pre-ordering components and actual production. However, as stipulated in the assignment, this problem necessitates recourse action, transforming it into a 2-stage stochastic linear programming problem with recourse (2-SLPWR) with the request of finding the optimal value of $x,y \in \mathbb{R}^m$ and $z \in \mathbb{R}^n$. The comprehensive formulation process and subsequent solution will be detailed further below.
 	
 	\subsection{Model formulation}
 		\subsubsection{Notations}
 		
-		\qquad for ease of reading, the tables below summarize the notation of parameters and decision variables used in 
+		\qquad For ease of reading, the tables below summarize the notation of parameters and decision variables used in 
 the formulation of this report.
 
 		% Parameter table
@@ -45,46 +45,59 @@ the formulation of this report.
 		\end{tabular}
 		\end{center}
 
+
 		% Decision variable table
 		\begin{center}
 		\begin{tabular}{|c|l|}
-		\hline
-		\textbf{Symbol} & \textbf{Definition}\\
-		\hline 
-		\multirow{1}{*}{$x$} & \multirow{1}{*}{The set of parts $j$ to be ordered}\\
-		\hline
-		\multirow{1}{*}{$z$} & \multirow{1}{*}{The set of manufactured product $i$}\\
-		\hline
-		\multirow{1}{*}{$y$} & \multirow{1}{*}{The set of salvage part $j$}\\
-		\hline
+			\hline
+			\textbf{Symbol} & \textbf{Definition}\\
+			\hline 
+			\multirow{1}{*}{$x$} & \multirow{1}{*}{The set of preordering quantities}\\
+			\hline
+			\multirow{1}{*}{$z$} & \multirow{1}{*}{The set of manufactured products}\\
+			\hline
+			\multirow{1}{*}{$y$} & \multirow{1}{*}{The set of salvage parts}\\
+			\hline
 		\end{tabular}
 		\end{center}
 
-		\subsubsection{First stage}
-		\qquad As mentioned above, the first stage is about making sure the number of parts preordered will be enough to meet the unknown demand in the future and not overbought or underbought as that will damage the profit of the firm. The decision variable in this stage is $x$ and also a \textit{here-and-now} decision which needs to be chosen before realizing the actual demand. The preordering cost can be represented as a linear function:
+		\subsubsection{First Stage}
+
+		\qquad The initial stage primarily focuses on ensuring the preordered quantity of parts is sufficient to accommodate future, yet uncertain, demands while avoiding surplus or deficit, which could adversely impact the firm's profitability. The decision variable, denoted as $x$, constitutes a \textit{here-and-now} determination that must be made prior to the revelation of actual demand. The preordering cost is represented as a linear function:
 		
-		$$f(x) = b^Tx$$
+		$$f(x) = b^T x$$
 		
-		However, because the problem of interest is a 2-SLPWR, a probability function associated with different scenarios are added to tune the original constraints. The quantities $x$ then can be determined by solving the following optimization problem:
+		However, as the problem at hand pertains to a 2-SLPWR (2-stage stochastic linear programming problem with recourse), probability functions linked to distinct scenarios are incorporated to fine-tune the original constraints. Consequently, the quantities denoted by $x$ can be determined by solving the following optimization problem:
 
 		\begin{align*}
-			\text{min } & g(x,y,z) = b^Tx + Q(x) = b^Tx + E[Z(z)]
+			\text{minimize } & g(x, y, z) = b^T x + Q(x) = b^T x + E[Z(z)]
 		\end{align*}
 
-		Where $Q(x) = E_\omega[Z] = \sum_{i=1}^{n}p_i c_i z_i$ is taken with respect to the probability distribution of $\omega = D$. Q(x) is the expected value of the optimal production cost (which is the optimal solution to the second stage problem which will be presented right below).
+		Here, $Q(x) = E_{\omega}[Z] = \sum_{i=1}^{n} p_i c_i z_i$ is taken with respect to the probability distribution of $\omega = D$. $Q(x)$ represents the expected value of the optimal production cost (the optimal solution to the second-stage problem detailed below). Therefore, $Q(x) = \sum_{k=1}^{S} p_k (c^T z_k - s^T y_k)$, where $z_{k}$ and $y_{k}$ denote the set of manufactured products and the quantity of salvage parts in scenario $k$, respectively.
 
-		\subsubsection{Second stage}
+		\subsubsection{Second Stage}
 
-		\qquad In this stage, the demand $d=(d_1,d_2,...,d_n)$ for the products are realized, thus, the best production plan can be achieved by solving the stochastic linear program with decision variable $x$ and $y$:
+		\qquad Subsequent to the initial stage, the actual demand $d=(d_1,d_2,...,d_n)$ for the products is realized. Consequently, the optimal production plan is derived by solving the stochastic linear program involving decision variables $x$ and $y$:
 
 		\begin{align*}
-			min_{x,y} & Z=\sum^n_{i=1} (l_i-q_i)z_i - \sum^m_{j=1}s_jy_j \\
-			\text{s.t. } & y_j=x_j- \sum_{i=1}^n a_{ij}z_i, \quad j=1,...,m \\
+			\text{minimize } & Z = \sum^n_{i=1} (l_i - q_i) z_i - \sum^m_{j=1} s_j y_j \\
+			\text{subject to } & y_j = x_j - \sum_{i=1}^n a_{ij} z_i, \quad j=1,...,m \\
 			& 0 \leq z_i \leq d_i, \quad i=1,...,n \\
 			& y_j \geq 0, \quad j=1,...,m
 		\end{align*}
-		
-		\subsubsection{Final model}
+
+		\subsubsection{Grand model}
+
+		\qquad It can be observed that to solve the first stage problem, the optimal solution of the second stage is required. However, the optimal solutoin of the second stage again, needs the value of $x$ of the first stage. Here we counter the interdependence between the two stages. Therefore, to solve this problem, it is essential to combine the two stages into one \textit{grand objective function} and let the unknown demand follows the binomial distribution specificied in the description of the assignment. Then, the quantities $x$ can be decided and use that to solve the second stage again once the actual demand is realized. The grand objective function is described below:
+
+		\begin{align*}
+			\text{min } & g(x,y,z) = b^Tx + \sum_{k=1}^{S} p_k (c^T z_k - s^T y_k)\\
+			\text{s.t. } & y_{k}=x- A^T z_k, \quad k=1,...,S \\
+			& x \geq 0 \\
+			& 0 \leq z_{k} \leq d_{k}, \quad k=1,...,S \\
+			& y_k \geq 0, \quad k=1,...,S
+		\end{align*}
+
 		\subsubsection{Solution}
 
 		\qquad In the description of the assignment, specific value of the parameters are given as follows:
@@ -95,8 +108,44 @@ the formulation of this report.
 			\item S = 2
 			\item $p_s$ = 1/2
 			\item Values of b, l, q, s and A are randomized 
-			\item Random demand vector $D$ and its density $p_i$ follows the binomial distribution \textbf{Bin(10,1/2)}
+			\item Random demand vector $D$ and its density $p_i$ follows the binomial distribution \textbf{Bin(10,$\frac{1}{2}$)}
 		\end{itemize}
 
+		\qquad To solve this 2-SLPWR problem, our group decided to employ Gurobi - a powerful mathematical optimization solver in Python programming language with Gurobi API. The source code has been included in our assignment submission. 
 
-		
+		\qquad For the values of b, l, q, s and A, a function to randomize integer is used to generate the set of said values. To be specific, the ranges for each one is listed below:
+
+		\begin{itemize}
+			\item Preordering cost $b$: 50 -> 100
+			\item Additional producing cost $l$: 100 -> 200
+			\item Selling price per unit $q$: 1000 -> 2000
+			\item Salvage part selling price $s$: 30 -> price of the corresponding part (for part $j$ ranges from 1 to $m$, $s_j$ < $b_j$ as specificied in the assignment)
+			\item Number of parts required for each product $A$: the number of each part required for a product will ranges from 0 -> 5.
+		\end{itemize}
+
+		\qquad Then, a model for the first stage are defined identically to the grand model in section 4.2.4 above. The model is then optimized with demand vector $D$ randomized following the binomial distribution to find quantities $x$. After that, a second model for the second stage is defined according to section 4.2.3. With that, a vector of $d$ is hard-coded to represent the fact that the actual demand has been revealed, $y$ and $z$ then can be found by solving the optimizing problem.
+
+		\qquad For example, an instance of our model having the following parameters:
+
+		\begin{itemize}
+			\item $b$ = [74 50 56 66 51]
+			\item $l$ = [138 131 196 188 169 127 164 101]
+			\item $q$ = [1399 1122 1639 1410 1420 1572 1261 1377]
+			\item $s$ = [32 32 41 42 32]
+			\item $A = 	\begin{bmatrix}
+							1 & 4 & 0 & 2 & 4 \\
+							3 & 1 & 3 & 2 & 0 \\
+							3 & 0 & 4 & 2 & 4 \\
+							3 & 1 & 2 & 1 & 4 \\
+							3 & 2 & 3 & 1 & 1 \\
+							2 & 0 & 3 & 0 & 2 \\
+							0 & 4 & 0 & 3 & 1 \\
+							3 & 0 & 2 & 2 & 1 \\
+						\end{bmatrix}$
+			\item $D = 	\begin{bmatrix}
+							5 & 4 & 5 & 5 & 4 & 6 & 4 & 6 \\
+							6 & 2 & 6 & 6 & 4 & 4 & 6 & 5 \\
+						\end{bmatrix}$
+		\end{itemize}
+
+		\qquad With those randomzed value, the optimal vector $x$ is found: [89 64 84 66 95]. Then second stage is solved, getting the result of $z$ and $y$ as follows: [5 3 5 8 4 4 6 5], [1 1 5 0 0].
