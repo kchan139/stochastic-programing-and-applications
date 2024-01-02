@@ -1,10 +1,10 @@
 \newpage
-\section{Solution to PROBLEM 1}
+\section{PROBLEM I. [Industry - Manufacutring]}
 	\subsection{Summary of the Problem}
 
 	\qquad In this problem, the objective is to minimize the production of an industrial firm F. To be specific, the firm needs to produce $n$ products. Each product requires different number of parts which have to be ordered from $m$ 3rd-party suppliers and each part has a cost of $b$. Before the demand for the products are known, the number of parts to be ordered has to be decided. After that, the production stage begins and the demand is revealed. With each product, there is an associating selling price $q$. If the parts are overbought (exceed the necessary number for production), they have to be reselled with a price of $s$ to minimize the cost. Moreover, when a demand of a product is not fulfilled, it costs additionally $l$ per unit to satisfy that demand.
 
-	\qquad This is a 2-stage stochastic linear programming (2-SLP) problem where the demand of the products acts as the uncertainty. The goal of the two stages is to minimize the cost of preordering parts and the cost of production, respectively. The detailed formulation process and solution will be provided below.
+	\qquad This is a 2-stage stochastic linear programming (2-SLP) problem where the demand of the products acts as the uncertainty. The goal of the two stages is to minimize the cost of preordering parts and the cost of production, respectively. However, as specified in the assignment description, the problem requires recourse action so it is a 2-stage stochastic linear programming problem with recourse (2-SLPWR). The detailed formulation process and solution will be provided below.
 	
 	\subsection{Model formulation}
 		\subsubsection{Notations}
@@ -61,14 +61,17 @@ the formulation of this report.
 		\end{center}
 
 		\subsubsection{First stage}
-		\qquad As mentioned above, the first stage is about making sure the number of parts preordered will be enough to meet the unknown demand in the future and not overbought or underbought as that will damage the profit of the firm. The decision variable in this stage is $x$ and also a \textit{here-and-now} decision. It can be formulated as:
+		\qquad As mentioned above, the first stage is about making sure the number of parts preordered will be enough to meet the unknown demand in the future and not overbought or underbought as that will damage the profit of the firm. The decision variable in this stage is $x$ and also a \textit{here-and-now} decision which needs to be chosen before realizing the actual demand. The preordering cost can be represented as a linear function:
+		
+		$$f(x) = b^Tx$$
+		
+		However, because the problem of interest is a 2-SLPWR, a probability function associated with different scenarios are added to tune the original constraints. The quantities $x$ then can be determined by solving the following optimization problem:
 
 		\begin{align*}
-			\text{min } & g(x,y,z) = b^Tx + Q(x)\\
-			\text{s.t. } & x,y,z \geq 0
+			\text{min } & g(x,y,z) = b^Tx + Q(x) = b^Tx + E[Z(z)]
 		\end{align*}
 
-		where $b^Tx$ is the cost of purchasing vital parts for manufacturing and $Q(x)$ is the expected value of the optimal production cost (which is the solution to the second stage problem which will be presented right below).
+		Where $Q(x) = E_\omega[Z] = \sum_{i=1}^{n}p_i c_i z_i$ is taken with respect to the probability distribution of $\omega = D$. Q(x) is the expected value of the optimal production cost (which is the optimal solution to the second stage problem which will be presented right below).
 
 		\subsubsection{Second stage}
 
