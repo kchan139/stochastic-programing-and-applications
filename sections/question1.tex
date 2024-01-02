@@ -116,11 +116,11 @@ the formulation of this report.
 		\qquad For the values of b, l, q, s and A, a function to randomize integer is used to generate the set of said values. To be specific, the ranges for each one is listed below:
 
 		\begin{itemize}
-			\item Preordering cost $b$: 50 -> 100
-			\item Additional producing cost $l$: 100 -> 200
-			\item Selling price per unit $q$: 1000 -> 2000
-			\item Salvage part selling price $s$: 30 -> price of the corresponding part (for part $j$ ranges from 1 to $m$, $s_j$ < $b_j$ as specificied in the assignment)
-			\item Number of parts required for each product $A$: the number of each part required for a product will ranges from 0 -> 5.
+			\item Preordering cost $b$: 50 $\rightarrow$ 100
+			\item Additional producing cost $l$: 100 $\rightarrow$ 200
+			\item Selling price per unit $q$: 1000 $\rightarrow$ 2000
+			\item Salvage part selling price $s$: 30 $\rightarrow$ price of the corresponding part (for part $j$ ranges from 1 to $m$, $s_j$ < $b_j$ as specificied in the assignment)
+			\item Number of parts required for each product $A$: the number of each part required for a product will ranges from 0 $\rightarrow$ 5.
 		\end{itemize}
 
 		\qquad Then, a model for the first stage are defined identically to the grand model in section 4.2.4 above. The model is then optimized with demand vector $D$ randomized following the binomial distribution to find quantities $x$. After that, a second model for the second stage is defined according to section 4.2.3. With that, a vector of $d$ is hard-coded to represent the fact that the actual demand has been revealed, $y$ and $z$ then can be found by solving the optimizing problem.
